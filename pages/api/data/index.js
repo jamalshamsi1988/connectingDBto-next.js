@@ -1,4 +1,5 @@
 
+import User from "../../../models/User";
 import connectDB from "../../../utils/connetctDB";
 
 export default async function handler  (req,res){
@@ -16,11 +17,18 @@ export default async function handler  (req,res){
         })
         return;
     }
+    //save data in mongoDB
+
+    // const user = new User({name});
+    // await user.save();
+
+    const user = await User.create({name});
+      console.log(user)
 
     res.status(201).json({
         status : "Success",
         message : "Data Created",
-        data : {name}
+        data :user,
     })
   }
 }
