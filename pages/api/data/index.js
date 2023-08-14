@@ -3,8 +3,13 @@ import User from "../../../models/User";
 import connectDB from "../../../utils/connetctDB";
 
 export default async function handler  (req,res){
+try{
 
-     await connectDB();
+  await connectDB();
+}catch(error){
+  console.log(error);
+  res.status(500).json({status :"failed", message : "Error in connection to DB"});
+}
 
   if(req.method === "POST") { 
     const {name} = req.body;
@@ -21,7 +26,7 @@ export default async function handler  (req,res){
 
     // const user = new User({name});
     // await user.save();
-
+try{
     const user = await User.create({name});
       console.log(user)
 
@@ -30,5 +35,9 @@ export default async function handler  (req,res){
         message : "Data Created",
         data :user,
     })
+  }catch(error){
+    console.log(error);
+    res.status(500).json({status : "failed" , message : "Error in storing data in DB"});
+  }
   }
 }
