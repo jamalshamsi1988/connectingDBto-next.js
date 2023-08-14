@@ -18,8 +18,6 @@ export default function handler  (req,res){
     ()=> console.log("Connected to DB")
     );
 
-
-
     res.status(201).json({
         status : "Success",
         message : "Data Created",
