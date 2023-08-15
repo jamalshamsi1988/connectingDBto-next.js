@@ -12,12 +12,12 @@ try{
 }
 
   if(req.method === "POST") { 
-    const {name} = req.body;
+    const name = req.body.name;
     console.log(name)
 
     if(!name || name.length <=3){
         res.status(422).json({
-            status : "Failed",
+            status : "failed",
             message : "Invalid data"
         })
         return;
@@ -28,12 +28,13 @@ try{
     // await user.save();
 try{
     const user = await User.create({
-      name : "jamal" , 
-      age : 10 ,
-      email:"jamal@gmail.com" ,
+      name : "ali" , 
+      age : 15 ,
+      email:"ali@gmail.com" ,
      city : "Tehran",
-    alle : "hashmi",
-    zipCod:180,});
+    alle : "emam",
+    zipCod:200,},
+   );
       console.log(user)
 
     res.status(201).json({
@@ -45,5 +46,16 @@ try{
     console.log(error);
     res.status(500).json({status : "failed" , message : "Error in storing data in DB"});
   }
-  }
+  }else if(req.method === "GET"){
+    try{
+      const users =await User.find();
+      res.status(200).json({
+        status : "Success",
+        data : users,
+      });
+    }catch(error){
+      console.log(error);
+      res.status(500).json({status : "failed" , message : "Error in retrieving data in DB"});
+    }
+   }
 }
