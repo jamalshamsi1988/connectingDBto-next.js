@@ -1,7 +1,25 @@
 import { Schema, model , models } from "mongoose";
 
 const userSchema = new Schema({
-    name : String
+    name : {
+        type : String,
+        max: 10
+    },
+    age : {
+        type : Number,
+        min : 10,
+        max:50
+    } ,
+    email : {
+        type: String,
+        required: true
+    } ,
+    address :{
+        city : String,
+        alle : String,
+        zipCod:Number
+    },
+    courses:[String]
 });
 
 const User = models.User || model ("User" , userSchema);

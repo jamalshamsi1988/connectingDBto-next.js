@@ -27,7 +27,13 @@ try{
     // const user = new User({name});
     // await user.save();
 try{
-    const user = await User.create({name});
+    const user = await User.create({
+      name : "jamal" , 
+      age : 10 ,
+      email:"jamal@gmail.com" ,
+     city : "Tehran",
+    alle : "hashmi",
+    zipCod:180,});
       console.log(user)
 
     res.status(201).json({
