@@ -4,11 +4,11 @@ import connectDB from "../../../utils/connetctDB";
 
 export default async function handler  (req,res){
 try{
-
   await connectDB();
 }catch(error){
   console.log(error);
   res.status(500).json({status :"failed", message : "Error in connection to DB"});
+  return;
 }
 
   if(req.method === "POST") { 
@@ -28,13 +28,15 @@ try{
     // await user.save();
 try{
     const user = await User.create({
-      name : "ali" , 
+      name : "alii" , 
       age : 15 ,
       email:"ali@gmail.com" ,
-     city : "Tehran",
-    alle : "emam",
-    zipCod:200,},
-   );
+      address: {
+         city : "Tehran",
+         alle : "emam",
+         zipCod:200,},
+      courses :["java"],
+});
       console.log(user)
 
     res.status(201).json({
@@ -48,8 +50,8 @@ try{
   }
   }else if(req.method === "GET"){
     try{
-      const users =await User.find();
-      res.status(200).json({
+      const users = await User.find();
+      res.status(200).json({ 
         status : "Success",
         data : users,
       });

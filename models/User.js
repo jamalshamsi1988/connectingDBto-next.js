@@ -3,7 +3,7 @@ import { Schema, model , models } from "mongoose";
 const userSchema = new Schema({
     name : {
         type : String,
-        max: 10
+        minLength: 3,
     },
     age : {
         type : Number,

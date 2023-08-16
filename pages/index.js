@@ -29,7 +29,7 @@ export default function Home() {
      <div>
       <ul>
         {
-          users.map(user => <li key={user._id}>{user.name}</li>)
+          users.map((user) => (<li key={user._id}>{user.name}</li>))
         }
       </ul>
      </div>
